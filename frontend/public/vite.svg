@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 404" fill="none">
+  <g clip-path="url(#a)">
+    <path fill="#747BFF" d="M399.1 0 204.5 404 0 48.5 399.1 0Z"/>
+    <path fill="url(#b)" d="m410 0-205.5 404L10.9 48.5 410 0Z"/>
+    <path fill="url(#c)" d="M213.5 384.5 399.1 0 204.5 404l9-19.5Z"/>
+    <path fill="url(#d)" d="M399.1 0 204.5 404 0 48.5 399.1 0Z"/>
+    <path fill="url(#e)" d="M399.1 0 204.5 404 0 48.5 399.1 0Z"/>
+    <path fill="url(#f)" d="M399.1 0 204.5 404 0 48.5 399.1 0Z"/>
+  </g>
+  <defs>
+    <linearGradient id="b" x1="25.5" x2="198.5" y1="17" y2="351.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#41D1FF"/>
+      <stop offset="1" stop-color="#BD34FE"/>
+    </linearGradient>
+    <linearGradient id="c" x1="194.5" x2="204.5" y1="351.5" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFEA83"/>
+      <stop offset=".083" stop-color="#FFDD35"/>
+      <stop offset="1" stop-color="#FFA800"/>
+    </linearGradient>
+    <linearGradient id="d" x1="194.5" x2="204.5" y1="351.5" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFEA83"/>
+      <stop offset=".083" stop-color="#FFDD35"/>
+      <stop offset="1" stop-color="#FFA800"/>
+    </linearGradient>
+    <linearGradient id="e" x1="194.5" x2="204.5" y1="351.5" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFEA83"/>
+      <stop offset=".083" stop-color="#FFDD35"/>
+      <stop offset="1" stop-color="#FFA800"/>
+    </linearGradient>
+    <linearGradient id="f" x1="194.5" x2="204.5" y1="351.5" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFEA83"/>
+      <stop offset=".083" stop-color="#FFDD35"/>
+      <stop offset="1" stop-color="#FFA800"/>
+    </linearGradient>
+    <clipPath id="a">
+      <path fill="#fff" d="M0 0h410v404H0z"/>
+    </clipPath>
+  </defs>
+</svg>
