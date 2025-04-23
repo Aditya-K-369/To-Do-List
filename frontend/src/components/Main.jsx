@@ -4,6 +4,7 @@ import Card from "./Card.jsx";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Main = () => {
   const [name, setName] = React.useState("");
   const [desc, setDesc] = React.useState("");
@@ -13,6 +14,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const submit = async (e) => {
+    e.preventDefault();
     const response = await fetch("http://localhost:3000/dataadd", {
       method: "POST",
       headers: {
@@ -20,22 +22,17 @@ const Main = () => {
         Accept: "application/json",
       },
       credentials: "include",
-      body: JSON.stringify({
-        name: name,
-        desc: desc,
-        date: date,
-        category: category,
-      }),
+      body: JSON.stringify({ name, desc, date, category }),
     });
     const data = await response.json();
     if (data.success) {
-      toast(data.message, { autoClose: 3000 });
+      toast.success(data.message, { autoClose: 3000 });
+      setName("");
+      setDesc("");
+      setDate("");
+      setCategory("");
+      setSubmitData(true);
     }
-    setName("");
-    setDesc("");
-    setDate("");
-    setCategory("");
-    setSubmitData(true);
   };
 
   const handleReset = () => {
@@ -63,88 +60,96 @@ const Main = () => {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   return (
     <>
-      <Navbar></Navbar>
-
-      <div className="h-[60vh] flex flex-col justify-center text-center items-center" style={{ backgroundColor: "#D4C9BE" }}>
-        <div className="w-2/8 py-10 rounded-md shadow-lg  border-gray-600 " style={{ backgroundColor: "#9ACBD0" }}>
+      <Navbar />
+      <div className="min-h-screen flex flex-col items-center bg-[#D4C9BE] px-4 py-6 overflow-x-hidden">
+        <form
+          onSubmit={submit}
+          className="w-full max-w-md bg-white shadow-md rounded-lg p-6 space-y-4"
+        >
           <div>
-            <div>
-              <label htmlFor="name">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                  required
-                  className="border-2 border-black rounded-md p-2 m-2"
-                  placeholder="Enter your work name"
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="name-desc">
-                <input
-                  type="text"
-                  name="name-desc"
-                  id="name-desc"
-                  required
-                  onChange={(e) => setDesc(e.target.value)}
-                  value={desc}
-                  className="border-2 border-black rounded-md p-2 m-2"
-                  placeholder="Enter your work description"
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="category    ">
-                <input
-                  type="text"
-                  name="category"
-                  id="category"
-                  required
-                  onChange={(e) => setCategory(e.target.value)}
-                  value={category}
-                  className="border-2 border-black rounded-md p-2 m-2"
-                  placeholder="Enter category"
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="date">
-                <div>Completion Date & Time</div>
-                <input
-                  type="datetime-local"
-                  name="date"
-                  id="date"
-                  required
-                  onChange={(e) => setDate(e.target.value)}
-                  value={date}
-                  className="border-2 border-black rounded-md p-2 m-2"
-                />
-              </label>
-            </div>
-            <div>
-              <button
-                onClick={submit}
-                className="rounded-[20vw] bg-blue-800 px-8 py-2 text-white font-medium"
-              >
-                submit
-              </button>
-            </div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Work Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+              placeholder="Enter your work name"
+            />
           </div>
+          <div>
+            <label
+              htmlFor="desc"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Work Description
+            </label>
+            <input
+              type="text"
+              id="desc"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+              placeholder="Enter your work description"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="category"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Category
+            </label>
+            <input
+              type="text"
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+              placeholder="Enter category"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="date"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Completion Date & Time
+            </label>
+            <input
+              type="datetime-local"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            Submit
+          </button>
+        </form>
+
+        <div className="mt-8 w-full max-w-md">
+          <h2 className="text-xl font-bold text-center mb-4">NOTES</h2>
+          <Card submitData={submitData} onReset={handleReset} />
         </div>
       </div>
-      <>
-      <div className="font-bold text-3xl mt-auto text-center p-3" style={{backgroundColor:"#D4C9BE"}} >
-        NOTES
-      </div>
-      </>
-      <Card submitData={submitData} onReset={handleReset}></Card>
     </>
   );
 };
